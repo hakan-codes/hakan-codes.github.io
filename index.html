@@ -2,18 +2,42 @@
   <head>
     <title>hCaptcha</title>
     <script src="https://hcaptcha.com/1/api.js" async defer></script>
-  </head>
-  <body style='background-color: aqua;'>
-test
-    <form action="?" method="POST">
-      <div class="h-captcha" 
-        data-sitekey="f7224f80-0622-44d6-8dec-1c1809f0d500"
-        data-callback="captchaCallback"></div>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh; /* Full viewport height */
+        display: flex;
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        background-color: aqua;
+      }
 
-    </form>
+      .captcha-container {
+        width: 100%; /* Full width */
+        height: 50%; /* Half of the viewport height */
+        display: flex;
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+      }
+
+      .h-captcha {
+        width: 100%; /* Full width for hCaptcha */
+        height: 100%; /* Full height for hCaptcha */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="captcha-container">
+      <div
+        class="h-captcha"
+        data-sitekey="f7224f80-0622-44d6-8dec-1c1809f0d500"
+        data-callback="captchaCallback"
+      ></div>
+    </div>
+
     <script>
       function captchaCallback(response) {
-        if (typeof Captcha!=="undefined") {
+        if (typeof Captcha !== "undefined") {
           Captcha.postMessage(response);
         }
       }
