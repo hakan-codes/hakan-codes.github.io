@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hCaptcha</title>
     <script src="https://hcaptcha.com/1/api.js" async defer></script>
   </head>
-  <body>
-    <div
-      class="h-captcha"
-      data-sitekey="f7224f80-0622-44d6-8dec-1c1809f0d500"
-      data-callback="onSuccess"
-    ></div>
+  <body style='background-color: aqua;'>
+    <form action="?" method="POST">
+      <div class="h-captcha" 
+        data-sitekey="f7224f80-0622-44d6-8dec-1c1809f0d500"
+        data-callback="captchaCallback"></div>
 
-    <script type="text/javascript">
-      function onSuccess(token) {
-        // Send the token to the Flutter app
-        if (window.flutter_inappwebview) {
-          window.flutter_inappwebview.callHandler("onCaptchaSuccess", token);
+    </form>
+    <script>
+      function captchaCallback(response) {
+        if (typeof Captcha!=="undefined") {
+          Captcha.postMessage(response);
         }
       }
     </script>
